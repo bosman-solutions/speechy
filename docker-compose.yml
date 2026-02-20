@@ -1,0 +1,28 @@
+# Speechy — HTTP text-to-speech with speaker playback
+#
+# Calls the piper CLI directly inside the container.
+# Shares the same ./voices directory as your Wyoming Piper instance.
+#
+# Test it:
+#   curl http://localhost:5050/speak -d '{"text": "Hello world", "voice": "mssam"}'
+#   curl http://localhost:5050/voices
+
+services:
+  speechy:
+    build: .
+    container_name: speechy
+    restart: unless-stopped
+    ports:
+      - "5050:5050"
+    environment:
+      - VOICE_DIR=/data
+      - DEFAULT_VOICE=mssam
+      - LISTEN_PORT=5050
+      - XDG_RUNTIME_DIR=/run/user/1000
+    volumes:
+      # Voice models (.onnx + .onnx.json files)
+      - ./voices:/data:ro
+      # PipeWire socket — this is how audio reaches your speakers
+      - /run/user/1000/pipewire-0:/run/user/1000/pipewire-0
+      - /run/user/1000/pulse:/run/user/1000/pulse
+    user: "1000:1000"

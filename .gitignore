@@ -1,0 +1,22 @@
+# Voice models (large binary files — don't commit these)
+voices/
+*.onnx
+*.onnx.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log

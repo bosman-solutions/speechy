@@ -1,0 +1,10 @@
+voices/
+*.onnx
+*.onnx.json
+.git/
+.gitignore
+.dockerignore
+README.md
+LICENSE
+.venv/
+__pycache__/
