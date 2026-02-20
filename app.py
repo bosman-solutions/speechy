@@ -108,7 +108,7 @@ def speak():
                 os.unlink(wav_path)
 
 
-# --- Start ---
+# --- Start --- #
 
 if __name__ == "__main__":
     print(f"Speechy starting up")
