@@ -8,7 +8,7 @@ One container. Text goes in, speech comes out of your speakers. No Wyoming proto
 
 ## Setup
 
-1. Put your Piper `.onnx` voice models in `./voices/`
+1. Download some voices: `./download-voices.sh`
 2. `docker compose up -d`
 3. That's it.
 
@@ -33,9 +33,35 @@ curl http://localhost:5050/health
 
 ## Voices
 
-Drop any Piper `.onnx` + `.onnx.json` pair into `./voices/` and restart. Speechy finds them automatically.
+Use the included download script to grab open-source Piper voices from Hugging Face:
 
-Custom voices can be trained with [piper-recording-studio](https://github.com/rhasspy/piper-recording-studio).
+```bash
+# Download the starter set (amy, lessac, ryan, joe)
+./download-voices.sh
+
+# Download specific voices
+./download-voices.sh en_US-amy-medium en_GB-alan-medium
+
+# Download all available voices
+./download-voices.sh $(grep -oP 'en_\w+-\w+-\w+' download-voices.sh | sort -u)
+```
+
+### Recommended voices
+
+| Voice | Quality | Description |
+|-------|---------|-------------|
+| `en_US-amy-medium` | Medium | US female, clear and natural — great default |
+| `en_US-lessac-medium` | Medium | US female, expressive — popular in AI demos |
+| `en_US-ryan-medium` | Medium | US male, solid general-purpose |
+| `en_US-joe-medium` | Medium | US male, warm tone |
+| `en_US-lessac-high` | High | US female, best quality (larger model) |
+| `en_US-ryan-high` | High | US male, best quality (larger model) |
+| `en_GB-alan-medium` | Medium | British male |
+| `en_GB-jenny_dioco-medium` | Medium | British female |
+
+All voices are MIT/Apache-2.0 licensed from the [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices) repository.
+
+You can also drop any Piper `.onnx` + `.onnx.json` pair into `./voices/` manually. Custom voices can be trained with [piper-recording-studio](https://github.com/rhasspy/piper-recording-studio).
 
 ## How it works
 
@@ -60,7 +86,7 @@ You → HTTP POST /speak → Speechy → piper CLI → WAV file → pw-play → 
 | Variable | Default | What it does |
 |----------------|---------|----------------------------------|
 | `VOICE_DIR` | `/data` | Where voice models live |
-| `DEFAULT_VOICE`| `mssam` | Voice used when none specified |
+| `DEFAULT_VOICE`| `en_US-amy-medium` | Voice used when none specified |
 | `LISTEN_PORT` | `5050` | HTTP server port |
 
 ## Notes

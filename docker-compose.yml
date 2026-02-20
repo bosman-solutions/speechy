@@ -16,7 +16,7 @@ services:
       - "5050:5050"
     environment:
       - VOICE_DIR=/data
-      - DEFAULT_VOICE=mssam
+      - DEFAULT_VOICE=en_US-amy-medium
       - LISTEN_PORT=5050
       - XDG_RUNTIME_DIR=/run/user/1000
     volumes:

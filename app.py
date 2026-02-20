@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 # --- Config (all from environment, with sane defaults) ---
 VOICE_DIR = os.environ.get("VOICE_DIR", "/data")
-DEFAULT_VOICE = os.environ.get("DEFAULT_VOICE", "mssam")
+DEFAULT_VOICE = os.environ.get("DEFAULT_VOICE", "en_US-amy-medium")
 
 # Only one thing talks through the speakers at a time
 play_lock = threading.Lock()
