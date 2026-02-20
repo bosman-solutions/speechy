@@ -22,7 +22,8 @@ services:
       - XDG_RUNTIME_DIR=/run/user/1000
     volumes:
       # Voice models (.onnx + .onnx.json files)
-      - ./voices:/data:ro
+      # Mount from a stable path outside the repo so CI/CD rebuilds don't nuke them
+      - ${VOICE_PATH:-./voices}:/data:ro
       # PipeWire socket — this is how audio reaches your speakers
       - /run/user/1000/pipewire-0:/run/user/1000/pipewire-0
       - /run/user/1000/pulse:/run/user/1000/pulse
