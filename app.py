@@ -113,8 +113,12 @@ def speak():
 if __name__ == "__main__":
     print(f"Speechy starting up")
     print(f"  Voice dir:     {VOICE_DIR}")
+    print(f"  Listen host:   {os.environ.get('LISTEN_HOST', '0.0.0.0')}")
     print(f"  Default voice: {DEFAULT_VOICE}")
     print(
         f"  Voices found:  {sorted(f.replace('.onnx','') for f in os.listdir(VOICE_DIR) if f.endswith('.onnx'))}"
     )
-    app.run(host="0.0.0.0", port=int(os.environ.get("LISTEN_PORT", "5050")))
+    app.run(
+        host=os.environ.get("LISTEN_HOST", "0.0.0.0"),
+        port=int(os.environ.get("LISTEN_PORT", "5050")),
+    )

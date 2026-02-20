@@ -87,6 +87,7 @@ You → HTTP POST /speak → Speechy → piper CLI → WAV file → pw-play → 
 |----------------|---------|----------------------------------|
 | `VOICE_DIR` | `/data` | Where voice models live |
 | `DEFAULT_VOICE`| `en_US-amy-medium` | Voice used when none specified |
+| `LISTEN_HOST` | `0.0.0.0` | Bind address (`127.0.0.1` for localhost only) |
 | `LISTEN_PORT` | `5050` | HTTP server port |
 
 ## Notes
